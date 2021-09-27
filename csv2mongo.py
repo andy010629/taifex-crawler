@@ -18,13 +18,25 @@ def csv2mongo(path):
         with open(path+'/'+filename, newline='') as csvfile:
             rows = csv.reader(csvfile)
             all_data = []
-            for row in rows:
+            data = {}
+            for idx,row in enumerate(rows):
                 data = dict(zip(title_list,[ele.replace('-','').strip() for ele in row]))
-                all_data.append(data)
+                if(data.get('成交日期')):
+                    data['成交數量(B+S)'] += row
+                # if idx!=len(rows)-1 and rows[idx+1][3] != row and rows[idx+1][]:
+                #     all_data.append(data)
+                #     data.clear()
             db.insert_many(all_data[1:])
 
-if __name__ == '__main__':
-    csv2mongo('DailyFuturesCSV') 
-    csv2mongo('DailyOptionsCSV')
 
+mycol = mongoClient('DailyFuturesCSV')
+for x in mycol.find():
+    print(x)
+
+# if __name__ == '__main__':
+    # csv2mongo('DailyFuturesCSV') 
+    # csv2mongo('DailyOptionsCSV')
+
+
+# load()
 
