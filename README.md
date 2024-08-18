@@ -50,7 +50,7 @@ pip install requests beautifulsoup4 lxml wget
 您可以通過運行 `main.py` 來下載和解壓縮最新的期貨及選擇權數據：
 
 ```bash
-python main.py
+python crawler.py
 ```
 
 腳本將自動下載最近 30 天的期貨與選擇權資料並將其解壓縮到 `DailyFuturesCSV` 和 `DailyOptionsCSV` 資料夾中。
